@@ -98,7 +98,7 @@ unNombre = parseInt(unNombre);
 console.log(unNombre);
 console.log(typeof unNombre);
 
-// Je réaffecte une vzaleur à ma variable
+// Je réaffecte une valeur à ma variable
 unNombre = "12.55";
 console.log(unNombre);
 console.log(typeof unNombre);
