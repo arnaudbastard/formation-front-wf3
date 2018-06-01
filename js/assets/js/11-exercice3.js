@@ -79,14 +79,3 @@ var PremierTrimestre = [
 ];
 
 console.log(PremierTrimestre);
-
-let PremierTrimestreJulien = ['nom', 'prenom', 'matiere'];
-document.write(PremierTrimestreJulien);
-let PremierTrimestreDemmy = ['nom', 'prenom', 'matiere'];
-document.write(PremierTrimestreDemmy);
-let PremierTrimestreSylvain = ['nom', 'prenom', 'matiere'];
-document.write(PremierTrimestreSylvain);
-let PremierTrimestreHLouis = ['nom', 'prenom', 'matiere'];
-document.write(PremierTrimestreHLouis);
-let PremierTrimestreNicolas = ['nom', 'prenom', 'matiere'];
-document.write(PremierTrimestreNicolas);
