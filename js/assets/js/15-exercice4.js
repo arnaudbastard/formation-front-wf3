@@ -34,7 +34,7 @@ var membres = [
         }
 
     }
-]
+];
 
 var pseudo = document.getElementsByTagName(pseudo); 
 
@@ -54,3 +54,8 @@ for (let i = 0 ; i < membres.length ; i++) {
     pseudoerror.membres.style.display = "block";
     var submit = document.getElementsById('submit');
     submit.style.disabled = "true";
+
+
+
+
+    // le paramètre de la fonction s'appelle e comme il aurait pu s'appeler n'importe quoi d'autre
