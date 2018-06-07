@@ -50,6 +50,19 @@
         |   de sa demande de contact.                      |
         |                                                  |
         ------------------------------------------------- */
+
+    $('#Monformulaire').on('submbit', function() {
+
+        $('#MonFormulaire').show();
+        $('<p>').append(' <p>Votre nom</p> ' + $('#fullname').val() ).appendTo($('body'));
+        $('<p>').append(' <p>Votre email</p> ' + $('#email').val() ).appendTo($('body'));
+        $('<p>').append(' <p>Votre téléphone</p> ' + $('#tel').val() ).appendTo($('body'));
+        $('<p>').append(' <p>Le sujet de votre message</p> ' + $('#sujet').val() ).appendTo($('body'));
+        $('<p>').append(' <p>Votre message</p> ' + $('#message').val() ).appendTo($('body'));
+    });
+
+
+
     </script>
 </body>
 </html>
