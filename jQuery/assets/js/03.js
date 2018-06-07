@@ -1,4 +1,4 @@
-/* ----- LE CHAINAGE DE METHODES AVECC jQUERY ------ */
+/* ----- LE CHAINAGE DE METHODES AVEC jQUERY ------ */
 
 $(function() {
     console.log( $('div') );

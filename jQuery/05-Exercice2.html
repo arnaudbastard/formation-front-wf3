@@ -51,14 +51,49 @@
         |                                                  |
         ------------------------------------------------- */
 
-    $('#Monformulaire').on('submbit', function() {
+        // 1. Attente que le DOM soit chargé !
+        $(function() {
+            // 2. Ecouter l'évènement submit du formulaire
+            $('#MonFormulaire').submit(function(event) {  //.on('submit') possible aussi
+                // 3. Stopper l'envoi du formulaire
+                event.preventDefault();
 
+                // 4. Récupération des informations
+                let fullname    = $('#fullname').val();
+                let email       = $('#email').val();
+                let tel         = $('#tel').val();
+                let sujet       = $('#sujet').val();
+                let message     = $('#message').val();
+
+                // 5. Récapitulatif des informations du formulaire //this désigne '#MonFormulaire'
+                $(this).replaceWith(`
+                    <p>
+                        Bonjour <strong>${fullname}</strong>
+                        <em> ( ${email} ) </em> <br><br>
+                        Vous nous avez contacté au sujet de : <strong>${sujet}</strong>.<br>
+                        Nous reviendrons vers nous vous dans les plus brefs délais au <strong>${tel}</strong><br><br>
+                        <u>Ci-dessous votre message :</u><br>
+                        ${message}
+                    </p>
+                `);  
+
+            });
+
+        });
+
+
+
+// Ma version perso
+
+    $('#MonFormulaire').on('submit', function(e) {
+        e.preventDefault();
         $('#MonFormulaire').show();
         $('<p>').append(' <p>Votre nom</p> ' + $('#fullname').val() ).appendTo($('body'));
         $('<p>').append(' <p>Votre email</p> ' + $('#email').val() ).appendTo($('body'));
         $('<p>').append(' <p>Votre téléphone</p> ' + $('#tel').val() ).appendTo($('body'));
         $('<p>').append(' <p>Le sujet de votre message</p> ' + $('#sujet').val() ).appendTo($('body'));
         $('<p>').append(' <p>Votre message</p> ' + $('#message').val() ).appendTo($('body'));
+        console.log(e);
     });
 
 
