@@ -151,15 +151,13 @@
     </main>
     
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
     <!-- contact.custom.js -->
-    <script src="assets/js/08-exercice3.contact.js"></script>
+    <script src="assets/js/08-exercice3.js"></script>
     
 
 
@@ -175,7 +173,7 @@
 
 
 
-
+    <script>
 
     // -- Initialisation de jQuery (DOM READY)
     $(function() {
@@ -188,7 +186,30 @@
             -------------------------------------------------------------- */
         
             // -- Fonction ajouterContact(Contact) : Ajouter un Contact dans le tableau de Contacts, mettre à jour le tableau HTML, réinitialiser le formulaire et afficher une notification.
-            function ajouterContact(UnContact) {}
+            function ajouterContact(UnContact) {
+
+                // -- Ajouter un contact dans le tableau de contacts (CollectionDeContacts)
+                CollectionDeContacts.push(UnContact);     
+
+                // -- Mettre à jour le tableau HTML
+                $(`
+                    <tr>
+                        <td>${UnContact.nom}</td>
+                        <td>${UnContact.prenom}</td>
+                        <td>${UnContact.email}</td>
+                        <td>${UnContact.tel}</td>
+                    </tr>
+                `).appendTo( $('#LesContacts > tbody') );
+                
+                // -- Réinitialiser le formulaire
+                $('#contact')[0].reset();
+                $('#contact').get(0).reset();
+                $('#contact').trigger('reset');
+                document.getElementById('contact').reset();
+
+                // -- Afficher une notification
+                $('.alert-contact').fadeIn().delay(4000).fadeOut();
+            }
         
             // -- Fonction RéinitialisationDuFormulaire() : Après l'ajout d'un contact, on remet le formulaire à 0 !
             function reinitialisationDuFormulaire() {}
@@ -197,11 +218,34 @@
             function afficheUneNotification() {}
         
             // -- Vérification de la présence d'un Contact dans Contacts
-            function estCeQunContactEstPresent(UnEmail) {}
+            function estCeQunContactEstPresent(UnEmail) {
+
+                // -- Booléen qui indique la présence d'un contact dans ma collection
+                let estPresent = false; 
+
+                // -- On parcourt le tableau à la recherche d'une correspondance
+                for( let i = 0 ; i < CollectionDeContacts.length ; i++ ) {
+
+                    if (UnEmail === CollectionDeContacts[i].email) {
+                        estPresent = true;
+                        break;
+                    }
+                }
+
+                return estPresent;
+            }
+
+            /* Valider une adresse email */
+            function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+            }
         
-            // -- Vérification de la validité d'un Email
-            // : https://paulund.co.uk/regular-expression-to-validate-email-address
-            function validateEmail(email){}
+            /* Valider un numéro de téléphone */
+            var validateTel = tel => {
+            var telReg = new RegExp("(0|\\+33|0033)[1-9][0-9]{8}");
+            return telReg.test(tel);
+            }
         
             /* --------------------------------------------------------------
                             TRAITEMENT DE MON FORMULAIRE
@@ -213,38 +257,70 @@
                 // -- Voir le contenu de l'évènement
     
                 // -- Stopper la redirection de la page
+                e.preventDefault();
     
                 // -- Récupération des champs à vérifier
+
+                let nom = $('#nom'),
+                prenom  = $('#prenom'),
+                email   = $('#email'),
+                tel     = $('#tel');
     
                 // -- Vérification des informations...
+                let mesInformationsSontValides = true;
                 
                 // -- Vérification du Prénom
+                if ( prenom.val().length === 0) {
+                    // Le champ est incorrect car il n'a pas été rempli ...
+                    mesInformationsSontValides = false;
+                }
     
                 // -- Vérification du Nom
+                if ( nom.val().length === 0) {
+                    mesInformationsSontValides = false;
+                }
     
                 // -- Vérification du Tel
-    
+                if ( !validateTel ( tel.val() ) ) {
+                mesInformationsSontValides = false;
+                }
+
                 // -- Vérification du Mail
-    
-                if(...) {
-                    
-                    // -- Tous est correct, Préparation du Contact
-    
+                if ( !validateEmail( email.val() ) ) {
+                    mesInformationsSontValides = false;
+                }
+
+                if(mesInformationsSontValides) {
+
+                    // -- Tout est correct, Préparation du Contact
+                    let Contact= {
+                        // cle          // valeur
+                        nom             : nom.val(),
+                        prenom          : prenom.val(),
+                        email           : email.val(),
+                        tel             : tel.val(),
+                    };
+
+
                     // -- Observons dans la console
                     console.log(Contact);
     
                     // -- Vérification avec EstCeQunContactEstPresent
-                    if(!estCeQunContactEstPresent(...) {
+                    if( !estCeQunContactEstPresent (Contact.email) ) {
+                        mesInformationsSontValides = false;
                         
+
                         // -- Ajout du Contact
                         ajouterContact(Contact);
     
                     } else {                    
                         // -- Alert si contact présent
+                        alert('ATTENTION : ce contact déjà présent');
                     }
     
                 } else {
                     // -- Alert si erreur dans l'un des champs
+                    alert('ATTENTION : veuillez bien remplir tous les champs');
                 }       
         
             });
@@ -253,7 +329,7 @@
 
 
 
-
+    </script>
 
 
 
