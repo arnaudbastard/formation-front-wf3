@@ -1,0 +1,16 @@
+// -- Chargement de jQuery
+$(function() {
+    // -- 1. Récupération de la valeur sélectionnée par l'utilisateur (nom du chat)
+        $('#chats').on('change', function() {
+            let chat = $(this).val();
+            console.log( $(this));
+            //console.log(chat);
+        });
+
+
+
+    //  Récupération des informations saisies par l'utilisateur dans la zone de texte (raison d'adoption)
+        $('#chats').on('change', function() {
+
+        })
+});

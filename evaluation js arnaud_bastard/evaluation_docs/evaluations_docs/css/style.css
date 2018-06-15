@@ -1,0 +1,81 @@
+/* Bandeau/menu du haut */
+
+.navbar {
+    color: white;
+    font-family: 'Merienda', cursive;
+}
+
+.navbar p {
+    margin-left: 20%;
+    font-size: 1.2em;
+}
+
+/* Titre principal */
+
+#bloctitre {
+    background: #B9CDFF url(../img/background.jpg) repeat;
+    background-size: auto;
+    font-family: 'Merienda', cursive;
+    color: #FFF;
+    text-shadow: 2px 2px 2px black;
+    text-align: center;
+    padding: 3% 0;
+}
+
+/* Sélection du chat à adopter */
+
+#blocselection {
+background: rgb(233, 233, 233);
+}
+
+#blocselection h2 {
+font-family: 'Merienda', cursive;
+color : #2F4073;
+font-size: 1.2em;
+text-align: center;
+}
+
+#blocselection form {
+    font-weight: bold;
+}
+
+
+/* Texte d'explication sur l'adoption */
+
+#blocadoption  {
+background: rgb(221, 222, 224); 
+}
+
+#blocadoption h2 {
+    font-family: 'Merienda', cursive;
+    color: #2F4073;
+}
+
+aside img {
+    height: 250px;
+    width: 250px;
+}
+
+.img-fluid {
+    background-color: #7885A5;
+    -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+    transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+.img-fluid:hover {
+    background-color: #061339;
+}
+
+/* Bas de page */
+
+footer {
+    background: #061339;
+    color: white; 
+    text-align: right;
+}
+
+footer p{
+    font-size: 0.8em;
+    margin-right: 10px;
+    padding : 5px 0;
+}
