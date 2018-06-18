@@ -19,22 +19,17 @@
           {{ contact.name }}
         </a>
       </ul>
+      <!--
+      Lorsque l'évènement unContactEstCree sera émit, la fonction ajouterContactDansListe() sera déclanchée. Elle prendra en paramètre $event, qui contient les données de notre évènement unContactEstCree. A savoir le nouveauContact.
+      -->
+      <app-ajouter (unContactEstCree)="ajouterContactDansListe($event)"></app-ajouter>
     </div>
     <div class="col-sm-8">
-      <div class="jumbotron" *ngIf="contactActif">
-        <h1 class="display-4">{{ contactActif.name }}</h1>
-        <p class="lead">{{ contactActif.username }}</p>
-        <hr class="my-4">
-        <input type="text" class="form-control" [(ngModel)]= "contactActif.name">
-      </div>
-      <div class="jumbotron" *ngIf="!contactActif">
-        <h1 class="display-4">Bienvenue</h1>
-        <p class="lead">Choisissez un contact</p>
-      </div>
+      <app-profil [contact]="contactActif"></app-profil>
     </div>
   </div>
   <pre>
-    {{ mesContacts | json }}
+    <!--{{ mesContacts | json }} -->
   </pre>
   <footer class="text-center">
     Copyright &copy; 2018 - Paris IV - 3
